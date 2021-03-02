@@ -7,7 +7,7 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
     defaultConfig {
@@ -50,6 +50,10 @@ dependencies {
     implementation "androidx.annotation:annotation:1.1.0"
     implementation "com.mikepenz:materialdrawer:7.0.0"
 
-// Add for NavController support
+    // Add for NavController support
     implementation "com.mikepenz:materialdrawer-nav:7.0.0"
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    //Circle image view
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

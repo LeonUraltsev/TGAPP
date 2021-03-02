@@ -2,4 +2,13 @@
     <string name="app_name">My Application tg</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="settings_default_username">Leon Uraltsev</string>
+    <string name="settings_default_status">Online</string>
+    <string name="settings_text_account">Account</string>
+    <string name="settings_default_number">+79111111111</string>
+    <string name="settings_label_phone">Click, to change the number</string>
+    <string name="settings_login">Leon Uraltsev</string>
+    <string name="settings_label_login">User name</string>
+    <string name="settings_bio">About</string>
+    <string name="settings_label_bio">Write a little about yourself</string>
 </resources>
