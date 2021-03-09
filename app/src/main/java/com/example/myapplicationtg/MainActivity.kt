@@ -1,8 +1,10 @@
 package com.example.myapplicationtg
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.myapplicationtg.activities.RegisterActivity
 import com.example.myapplicationtg.databinding.ActivityMainBinding
 import com.example.myapplicationtg.ui.fragments.ChatsFragment
 import com.example.myapplicationtg.ui.objects.AppDrawer
@@ -27,10 +29,15 @@ class MainActivity : AppCompatActivity() {
 
     //функция отвечающая за функциональность
     private fun initFunc() {
-        setSupportActionBar(toolbar)
-        appDrawer.create()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.dataContainer, ChatsFragment()).commit()
+        if(false){
+            setSupportActionBar(toolbar)
+            appDrawer.create()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.dataContainer, ChatsFragment()).commit()
+        }else{
+            val intent = Intent(this,RegisterActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 

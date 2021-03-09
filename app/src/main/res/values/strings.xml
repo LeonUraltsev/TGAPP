@@ -13,4 +13,9 @@
     <string name="settings_label_bio">Write a little about yourself</string>
     <string name="settings_menu_change_name">Change name</string>
     <string name="settings_menu_exit">Exit</string>
+    <string name="cd_register_image">register_image</string>
+    <string name="register_text_enter_code">Enter code</string>
+    <string name="register_text_send_code">we have sent an SMS with a code to your phone</string>
+    <string name="register_hint_default_code">- - - - - -</string>
+    <string name="register_title_your_phone">Your number</string>
 </resources>
