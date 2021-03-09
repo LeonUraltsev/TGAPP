@@ -11,4 +11,6 @@
     <string name="settings_label_login">User name</string>
     <string name="settings_bio">About</string>
     <string name="settings_label_bio">Write a little about yourself</string>
+    <string name="settings_menu_change_name">Change name</string>
+    <string name="settings_menu_exit">Exit</string>
 </resources>

@@ -157,7 +157,7 @@
         android:layout_width="@dimen/settings_btn_change_photo_width"
         android:layout_height="@dimen/settings_btn_change_photo_height"
         android:layout_marginEnd="@dimen/horizontal_margin"
-        android:src="@drawable/default_photo"
+        android:src="@drawable/ic_camera"
         app:civ_border_color="@color/colorAccent"
         app:civ_border_width="@dimen/settings_user_photo_border"
         app:civ_circle_background_color="@color/colorAccent"

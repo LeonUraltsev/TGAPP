@@ -8,8 +8,6 @@
         <item name="android:background">@drawable/ripple_effect</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
-
-
     </style>
 
     <style name="style_normal_text">
@@ -41,5 +39,10 @@
         <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="android:background">@color/colorPrimary</item>
 <!--        <item name="android:elevation">4dp</item>-->
+    </style>
+    
+    <style name="action_menu" parent="Theme.AppCompat.Light">
+        <item name="background">@color/colorAccent</item>
+        <item name="actionMenuTextColor">@color/colorBlack</item>
     </style>
 </resources>
