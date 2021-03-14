@@ -8,6 +8,11 @@ import com.example.myapplicationtg.activities.RegisterActivity
 import com.example.myapplicationtg.databinding.ActivityMainBinding
 import com.example.myapplicationtg.ui.fragments.ChatsFragment
 import com.example.myapplicationtg.ui.objects.AppDrawer
+import com.example.myapplicationtg.utilits.AUTH
+import com.example.myapplicationtg.utilits.replaceActivity
+import com.example.myapplicationtg.utilits.replaceFragment
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,14 +34,12 @@ class MainActivity : AppCompatActivity() {
 
     //функция отвечающая за функциональность
     private fun initFunc() {
-        if(false){
+        if(AUTH.currentUser != null){
             setSupportActionBar(toolbar)
             appDrawer.create()
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.dataContainer, ChatsFragment()).commit()
+            replaceFragment(ChatsFragment(),false)
         }else{
-            val intent = Intent(this,RegisterActivity::class.java)
-            startActivity(intent)
+            replaceActivity(RegisterActivity())
         }
 
     }
@@ -45,5 +48,6 @@ class MainActivity : AppCompatActivity() {
     private fun initFields() {
         toolbar = binding.mainToolbar
         appDrawer = AppDrawer(this, this.toolbar)
+        AUTH = FirebaseAuth.getInstance()
     }
 }

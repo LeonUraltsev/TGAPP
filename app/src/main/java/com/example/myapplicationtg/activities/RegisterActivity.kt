@@ -6,6 +6,8 @@ import androidx.appcompat.widget.Toolbar
 import com.example.myapplicationtg.R
 import com.example.myapplicationtg.databinding.ActivityRegisterBinding
 import com.example.myapplicationtg.ui.fragments.EnterPhoneFragment
+import com.example.myapplicationtg.utilits.replaceActivity
+import com.example.myapplicationtg.utilits.replaceFragment
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -21,8 +23,7 @@ class RegisterActivity : AppCompatActivity() {
         toolbar = binding.registerToolbar
         setSupportActionBar(toolbar)
         title = getString(R.string.register_title_your_phone)
-        supportFragmentManager.beginTransaction()
-            .add(R.id.registerDataContainer,EnterPhoneFragment())
-            .commit()
+        replaceFragment(EnterPhoneFragment(),false)
+
     }
 }

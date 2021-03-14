@@ -1,53 +1,60 @@
 package com.example.myapplicationtg.ui.fragments
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import com.example.myapplicationtg.MainActivity
 import com.example.myapplicationtg.R
+import com.example.myapplicationtg.activities.RegisterActivity
 import com.example.myapplicationtg.databinding.FragmentEnterCodeBinding
+import com.example.myapplicationtg.utilits.AUTH
+import com.example.myapplicationtg.utilits.AppTextWatcher
+import com.example.myapplicationtg.utilits.replaceActivity
+import com.example.myapplicationtg.utilits.showToast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthProvider
 
-class EnterCodeFragment : Fragment(R.layout.fragment_enter_code) {
+class EnterCodeFragment(val phoneNumber: String, val id: String) : Fragment(R.layout.fragment_enter_code) {
 
-    private var _binding : FragmentEnterCodeBinding? = null
+    private var _binding: FragmentEnterCodeBinding? = null
     private val binding get() = _binding!!
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentEnterCodeBinding.inflate(inflater,container,false)
+        _binding = FragmentEnterCodeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
-        binding.registerInputCode.addTextChangedListener(object :TextWatcher{
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                TODO("Not yet implemented")
+        (activity as RegisterActivity).title = phoneNumber
+        binding.registerInputCode.addTextChangedListener(AppTextWatcher {
+            val string = binding.registerInputCode.text.toString()
+            if (string.length == 6) {
+                verificationCode()
             }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                TODO("Not yet implemented")
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                val string = binding.registerInputCode.text.toString()
-                if(string.length == 6){
-                    verificationCode()
-                }
-            }
-
         })
     }
 
     private fun verificationCode() {
-
+        val code = binding.registerInputCode.text.toString()
+        val credential:PhoneAuthCredential = PhoneAuthProvider.getCredential(id, code)
+        AUTH.signInWithCredential(credential).addOnCompleteListener{
+            if (it.isSuccessful){
+                showToast("Добро пожаловать")
+                (activity as RegisterActivity).replaceActivity(MainActivity())
+            } else {
+                showToast(it.exception?.message.toString())
+            }
+        }
     }
 
     override fun onDestroyView() {
