@@ -9,10 +9,7 @@ import com.example.myapplicationtg.MainActivity
 import com.example.myapplicationtg.R
 import com.example.myapplicationtg.activities.RegisterActivity
 import com.example.myapplicationtg.databinding.FragmentEnterCodeBinding
-import com.example.myapplicationtg.utilits.AUTH
-import com.example.myapplicationtg.utilits.AppTextWatcher
-import com.example.myapplicationtg.utilits.replaceActivity
-import com.example.myapplicationtg.utilits.showToast
+import com.example.myapplicationtg.utilits.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
@@ -49,8 +46,23 @@ class EnterCodeFragment(val phoneNumber: String, val id: String) : Fragment(R.la
         val credential:PhoneAuthCredential = PhoneAuthProvider.getCredential(id, code)
         AUTH.signInWithCredential(credential).addOnCompleteListener{
             if (it.isSuccessful){
-                showToast("Добро пожаловать")
-                (activity as RegisterActivity).replaceActivity(MainActivity())
+                val uid = AUTH.currentUser?.uid.toString()
+                val dateMap : MutableMap<String,Any> = mutableMapOf()
+                dateMap[CHILD_ID] = uid
+                dateMap[CHILD_PHONE] = phoneNumber
+                dateMap[CHILD_USERNAME] = uid
+
+                REF_DATA_BASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dateMap).addOnCompleteListener{ task ->
+                    if (task.isSuccessful){
+                        showToast("Добро пожаловать")
+                        (activity as RegisterActivity).replaceActivity(MainActivity())
+                    } else {
+                        showToast(task.exception?.message.toString())
+                    }
+                }
+
+
+
             } else {
                 showToast(it.exception?.message.toString())
             }

@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import com.example.myapplicationtg.R
 import com.example.myapplicationtg.databinding.ActivityRegisterBinding
 import com.example.myapplicationtg.ui.fragments.EnterPhoneFragment
+import com.example.myapplicationtg.utilits.initFirebase
 import com.example.myapplicationtg.utilits.replaceActivity
 import com.example.myapplicationtg.utilits.replaceFragment
 
@@ -16,6 +17,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initFirebase()
     }
 
     override fun onStart() {

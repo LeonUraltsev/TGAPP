@@ -9,6 +9,7 @@ import com.example.myapplicationtg.databinding.ActivityMainBinding
 import com.example.myapplicationtg.ui.fragments.ChatsFragment
 import com.example.myapplicationtg.ui.objects.AppDrawer
 import com.example.myapplicationtg.utilits.AUTH
+import com.example.myapplicationtg.utilits.initFirebase
 import com.example.myapplicationtg.utilits.replaceActivity
 import com.example.myapplicationtg.utilits.replaceFragment
 import com.google.firebase.FirebaseApp
@@ -48,6 +49,6 @@ class MainActivity : AppCompatActivity() {
     private fun initFields() {
         toolbar = binding.mainToolbar
         appDrawer = AppDrawer(this, this.toolbar)
-        AUTH = FirebaseAuth.getInstance()
+        initFirebase()
     }
 }
